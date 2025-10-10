@@ -104,10 +104,10 @@ Here are the available node configuration options, along with their default valu
 
 ## Light push config
 
-| Name            | Default Value | Description                                               |
+| Name            | Default Value | Description                                               |       |
 | --------------- | ------------- | --------------------------------------------------------- | ----- |
 | `lightpush`     | `false`       | Enable lightpush protocol: true                           | false |
-| `lightpushnode` |               | Peer multiaddr to request lightpush of published messages |
+| `lightpushnode` |               | Peer multiaddr to request lightpush of published messages |       |
 
 ## REST HTTP config
 
