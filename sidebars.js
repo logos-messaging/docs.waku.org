@@ -23,6 +23,7 @@ const sidebars = {
         "build/javascript/message-encryption",
         "build/javascript/use-waku-react",
         "build/javascript/use-waku-create-app",
+        "build/javascript/local-dev-env",
         "build/javascript/configure-discovery",
         "build/javascript/run-waku-nodejs",
         "build/javascript/debug-waku-dapp",
