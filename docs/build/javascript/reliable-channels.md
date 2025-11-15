@@ -146,6 +146,56 @@ reliableChannel.addEventListener("message-received", (event) => {
 })
 ```
 
+## Monitor sync status
+
+The reliable channel provides sync status events to help you understand whether the channel is fully synchronized with all participants. This is useful for showing loading states, alerting users about missing messages, or detecting permanently lost messages.
+
+### Understanding sync states
+
+The channel can be in one of two states:
+
+- **`synced`**: The channel is not aware of any missing messages that can still be retrieved. Note that some messages may have been permanently lost (see `lost` in the status detail).
+- **`syncing`**: The channel is aware of missing messages and is attempting to retrieve them.
+
+### Status detail structure
+
+Each sync status event includes a `StatusDetail` object with:
+
+- **`received`**: Number of messages successfully received
+- **`missing`**: Number of messages that are missing but may still be retrievable
+- **`lost`**: Number of messages considered permanently lost (irretrievable). Messages are marked as lost when they cannot be retrieved within a time constraint.
+
+### Listen to sync status events
+
+```js
+// Listen for when the channel is fully synced
+reliableChannel.syncStatus.addEventListener("synced", (event) => {
+  const { received, missing, lost } = event.detail;
+
+  console.log(`Channel synced: ${received} messages received`);
+
+  if (lost > 0) {
+    // Alert the user that some messages were permanently lost
+    console.warn(`Warning: ${lost} messages could not be retrieved`);
+  }
+
+  // Hide loading spinner, show "up to date" indicator, etc.
+});
+
+// Listen for when the channel is syncing
+reliableChannel.syncStatus.addEventListener("syncing", (event) => {
+  const { received, missing, lost } = event.detail;
+
+  console.log(`Syncing: ${missing} messages are being retrieved...`);
+
+  // Show loading spinner, "syncing" indicator, etc.
+});
+```
+
+:::warning
+When messages are marked as permanently lost, there is currently no automatic recovery mechanism available. You can inform users about the loss, but the messages cannot be retrieved. As we continue to improve the Reliable Channel feature, we may add additional recovery mechanisms in the future.
+:::
+
 ## Send messages
 
 To send messages in the reliable channel, encode the message in a payload.
