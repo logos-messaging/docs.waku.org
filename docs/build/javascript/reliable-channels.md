@@ -50,8 +50,6 @@ When the `defaultBootstrap` parameter is set to `true`, your node will be bootst
 Choose a [content topic](/learn/concepts/content-topics) for your application and create a message `encoder` and `decoder`:
 
 ```js
-import { createEncoder, createDecoder } from "@waku/sdk";
-
 // Choose a content topic
 const ct = "/my-app/1/messages/proto";
 
