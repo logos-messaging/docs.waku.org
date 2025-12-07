@@ -120,17 +120,21 @@ import { useForum } from '@opchan/react';
 const { user, content, permissions, network } = useForum();
 ```
 
-For bespoke logic, drop down to the individual hooks:
+### Advanced: Fine-Grained Hook Reference
 
-| Hook | Purpose | Typical actions |
-| --- | --- | --- |
-| `useAuth()` | Manage sessions, ENS verification, call signs, and delegation | `connect()`, `startAnonymous()`, `delegate('7days')`, `updateProfile()` |
-| `useContent()` | Read/write cells, posts, comments, votes, bookmarks | `createPost()`, `vote()`, `moderate.post()`, `pending.isPending(id)` |
-| `usePermissions()` | Query derived capabilities and friendly denial reasons | `canCreateCell`, `canModerate(cellId)`, `check('canPost')` |
-| `useNetwork()` | Reflect Waku connection status and hydration lifecycle | `isConnected`, `statusMessage`, `refresh()` |
-| `useUserDisplay(address)` | Resolve ENS + call-sign metadata for any address | `displayName`, `ensAvatar`, `verificationStatus` |
-| `useUIState(key, defaultValue, category?)` | Persist UI state to IndexedDB | `[value, setValue]` pair scoped by key |
-| `useEthereumWallet()` / `useClient()` | Advanced access to Wagmi connectors or the raw `OpChanClient` | `signMessage()`, direct database interactions |
+For more customized or advanced needs, you can work directly with the individual hooks that power OpChan.
+
+| **Hook**                         | **Purpose**                                                             | **Common Methods/Values**                                  |
+|-----------------------------------|-------------------------------------------------------------------------|------------------------------------------------------------|
+| `useAuth()`                      | User authentication, call signs, session & identity management           | `connect()`, `startAnonymous()`, `delegate('7days')`, `updateProfile()` |
+| `useContent()`                   | Read and write data: cells, posts, comments, votes, bookmarks            | `createPost()`, `vote()`, `moderate.post()`, `pending.isPending(id)` |
+| `usePermissions()`               | Check what the user can or can't do, with detailed reasons               | `canCreateCell`, `canModerate(cellId)`, `check('canPost')` |
+| `useNetwork()`                   | Network state, Waku connectivity, and hydration cycle                    | `isConnected`, `statusMessage`, `refresh()`                |
+| `useUserDisplay(address)`        | Get ENS & call-sign profile info about any Ethereum address              | `displayName`, `ensAvatar`, `verificationStatus`           |
+| `useUIState(key, defaultValue, category?)` | Persist UI/user state in IndexedDB                                  | `[value, setValue]` (React state pair)                     |
+| `useEthereumWallet()`<br/>`useClient()` | Power-user hooks for direct access to Wagmi or the OpChanClient     | `signMessage()`, direct client/database calls              |
+
+_Note: These hooks can be combined with the high-level `useForum()` API or used independently where your app structure requires._
 
 ### Sample snippets
 
