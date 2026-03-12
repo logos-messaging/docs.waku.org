@@ -128,10 +128,6 @@ const config = {
               href: "https://warpcast.com/waku",
               label: "Farcaster",
             },
-            {
-              href: "https://t.me/waku_org/",
-              label: "Telegram",
-            },
           ],
         },
         {
