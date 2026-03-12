@@ -61,7 +61,7 @@ async function downloadAndSaveFile(url, filePath) {
 
 const repositories = [
     {
-        baseUrl: 'https://api.github.com/repos/logos-messaging/logos-messaging-nim/contents/docs/benchmarks',
+        baseUrl: 'https://api.github.com/repos/logos-messaging/logos-delivery/contents/docs/benchmarks',
         baseSavePath: '/docs/learn/research/benchmarks/',
         prefixToRemove: "docs/benchmarks/",
         categoryFileContent: "{ \"label\": \"Benchmarks\", \"collapsed\": false }"
