@@ -9,16 +9,17 @@ on:
   pull_request:
 
 env:
-  NODE_JS: "22"
+  NODE_JS: "24"
 
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_JS }}
-      - uses: bahmutov/npm-install@v1
-      - run: npm run check:spell
-      - run: npm run build
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn check:spell
+      - run: yarn build
