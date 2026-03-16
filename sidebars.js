@@ -140,7 +140,15 @@ const sidebars = {
         },
       ],
     },
-    "learn/waku-vs-libp2p",
+    {
+      type: "category",
+      label: "Comparisons",
+      collapsed: false,
+      items: [
+        "learn/compare/libp2p",
+        "learn/compare/xmtp",
+      ],
+    },
     "learn/glossary",
     "learn/faq",
   ],
